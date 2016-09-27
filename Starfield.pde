@@ -1,27 +1,38 @@
 //your code here
+NormalParticle[] normie;
 void setup()
 {
 	//your code here
 	size(800,600);
-
+	normie = new NormalParticle[20];
+	for(int i = 0; i < normie.length; i ++)
+	{
+		normie[i] = new NormalParticle();
+	}
 }
-NormalPartical normie = new NormalPartical(400,300,2);
+
 void draw()
 {
 	//your code here
-	NormalPartical.move();
-	NormalPartical.show();
+	for(int i = 0; i < normie.length; i ++)
+	{
+		normie[i].move();
+		normie[i].show();
+	}
 }
 class NormalParticle
 {
 	// VARIABLES
 	int myColor;
 	double myX, myY, mySpeed, myAngle;
-
 	// CONSTRUCTOR
-	NormalPartical(x,x,a)
+	NormalParticle()
 	{
+		myX = 400;
+		myY = 300;
+		myAngle = Math.random()*(2*Math.PI);
 		mySpeed = 2;
+		myColor = color(255,0,0);
 	}
 
 	// FUNCTIONS
@@ -33,7 +44,7 @@ class NormalParticle
 	void show()
 	{
 		fill(myColor);
-		ellipse(myX,myY,10,10);
+		ellipse((float)myX,(float)myY,10,10);
 	}
 }
 interface Particle
