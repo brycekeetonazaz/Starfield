@@ -4,7 +4,7 @@ void setup()
 {
 	//your code here
 	size(800,600);
-	normie = new NormalParticle[20];
+	normie = new NormalParticle[1000];
 	for(int i = 0; i < normie.length; i ++)
 	{
 		normie[i] = new NormalParticle();
@@ -14,6 +14,7 @@ void setup()
 void draw()
 {
 	//your code here
+	background(0);
 	for(int i = 0; i < normie.length; i ++)
 	{
 		normie[i].move();
@@ -28,8 +29,8 @@ class NormalParticle
 	// CONSTRUCTOR
 	NormalParticle()
 	{
-		myX = 400;
-		myY = 300;
+		myX = 400+Math.random()*10;
+		myY = 300+Math.random()*10;
 		myAngle = Math.random()*(2*Math.PI);
 		mySpeed = 2;
 		myColor = color(255,0,0);
@@ -38,8 +39,19 @@ class NormalParticle
 	// FUNCTIONS
 	void move()
 	{
-		myX += Math.cos(myAngle)*mySpeed;
-		myY += Math.sin(myAngle)*mySpeed;
+		//mySpeed = ;
+		//myX += Math.cos(myAngle)+mySpeed;
+		//myY += Math.sin(myAngle)+mySpeed;
+		myX++;
+		myY +=10*Math.cos((100/Math.PI)*Math.sqrt(((400-myX)*(400-myX))-((300-myY)*(300-myY))));
+		if(myX > 800)
+		{
+			myX = 0;
+		}
+		if(myY > 600)
+		{
+			myY = 0;
+		}
 	}
 	void show()
 	{
