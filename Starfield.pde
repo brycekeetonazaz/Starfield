@@ -5,20 +5,22 @@ void setup()
 {
 	//your code here
 	size(800,600);
-	normie = new Particle[1000];
+	normie = new Particle[500];
+
 	jumbo = new JumboParticle();
-	for(int i = 0; i < normie.length; i ++)
+	for(int i = 0; i < normie.length/2; i +=2)
 	{
 		normie[i] = new NormalParticle();
+		normie[i+1] = new OddballParticle();
 	}
 }
 
 void draw()
 {
 	//your code here
-	background(0);
+	//background(0);
 	
-	for(int i = 0; i < normie.length; i ++)
+	for(int i = 0; i < normie.length/2; i ++)
 	{
 		normie[i].move();
 		normie[i].show();
@@ -26,7 +28,7 @@ void draw()
 	jumbo.move();
 	jumbo.show();
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
 	// VARIABLES
 	int myColor, mySize;
@@ -70,11 +72,22 @@ interface Particle
 	public void move();
 	public void show();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle//uses an interface
 {
-	Oddball()
+	int myX,myY;
+	OddballParticle()
 	{
-		
+		myX = 0;
+		myY = 0;
+	}
+	void move()
+	{
+		myX++;
+		myY++;
+	}
+	void show()
+	{
+		rect(myX,myY,100,100);
 	}
 }
 class JumboParticle extends NormalParticle//uses inheritance
